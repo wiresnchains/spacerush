@@ -29,6 +29,7 @@ int main() {
 
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(800, 600, WINDOW_TITLE);
+	SetTargetFPS(120);
 
 	SpawnPlayer();
 
