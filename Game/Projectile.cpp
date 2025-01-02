@@ -25,6 +25,13 @@ void CProjectile::ProcessCollision() {
 				State::Enemies.erase(State::Enemies.begin() + i);
 				State::Projectiles.erase(State::Projectiles.begin() + ID);
 
+				for (CProjectile* projectile : State::Projectiles) {
+					if (projectile->ID <= ID)
+						continue;
+
+					projectile->ID--;
+				}
+
 				State::Player->Score++;
 			}
 		}
