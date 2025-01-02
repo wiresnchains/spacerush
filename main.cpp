@@ -54,6 +54,7 @@ int main() {
 				continue;
 
 			projectile->ProcessMovement();
+			projectile->ProcessCollision();
 		}
 
 		if (!State::GameOver) {
@@ -71,6 +72,7 @@ int main() {
 		if (IsKeyDown(KEY_Q) && State::GameOver) {
 			SpawnPlayer();
 			State::Enemies.clear();
+			State::Projectiles.clear();
 			State::GameOver = false;
 			frames = 108;
 		}

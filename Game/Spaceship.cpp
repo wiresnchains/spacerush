@@ -7,7 +7,7 @@
 using namespace Spacerush::Game;
 
 void CSpaceship::Shoot(MoveDirection direction, ProjectileTargetType targetType) {
-	State::Projectiles.push_back(new CProjectile(Position, direction, targetType));
+	State::Projectiles.push_back(new CProjectile(State::Projectiles.size(), Position, direction, targetType));
 }
 
 /*void CSpaceship::ProcessBullets() {

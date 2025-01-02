@@ -12,12 +12,14 @@ namespace Spacerush::Game {
 
 	class CProjectile : public CEntity {
 	private:
+		int ID;
 		MoveDirection Direction;
 		ProjectileTargetType TargetType;
 
 	public:
-		CProjectile(Vector2 position, MoveDirection direction, ProjectileTargetType targetType) : CEntity(position, 4.f, { 255, 255, 255, 255 }, 200.f, false), Direction(direction), TargetType(targetType) {}
+		CProjectile(int id, Vector2 position, MoveDirection direction, ProjectileTargetType targetType) : CEntity(position, 4.f, { 255, 255, 255, 255 }, 200.f, false), ID(id), Direction(direction), TargetType(targetType) {}
 
 		void ProcessMovement();
+		void ProcessCollision();
 	};
 }
