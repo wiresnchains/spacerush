@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Entity.cpp" />
+    <ClCompile Include="Game\Powerup.cpp" />
     <ClCompile Include="Game\Projectile.cpp" />
     <ClCompile Include="Game\Spaceship.cpp" />
     <ClCompile Include="Game\Enemy.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Entity.h" />
+    <ClInclude Include="Game\Powerup.h" />
     <ClInclude Include="Game\Projectile.h" />
     <ClInclude Include="Game\Spaceship.h" />
     <ClInclude Include="State.h" />

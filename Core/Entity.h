@@ -12,8 +12,6 @@ namespace Spacerush::Core {
 
 	class CEntity {
 	private:
-		Color Col;
-		float Speed;
 		bool LoopScreen;
 
 	public:
@@ -21,6 +19,8 @@ namespace Spacerush::Core {
 
 		Vector2 Position;
 		float Size;
+		float Speed;
+		Color Col;
 
 		void Draw();
 		void Move(MoveDirection direction);

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Projectile.h"
+#include "Powerup.h"
 #include "../State.h"
 
 using namespace Spacerush::Game;

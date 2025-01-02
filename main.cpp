@@ -1,5 +1,6 @@
 #include "Game/Player.h"
 #include "Game/Enemy.h"
+#include "Game/Powerup.h"
 #include "State.h"
 #include <string>
 
@@ -21,6 +22,17 @@ void SpawnPlayer() {
 
 void SpawnEnemy() {
 	State::Enemies.push_back(new CEnemy(State::Player->Position.x, 0.8f));
+}
+
+void SpawnPowerup() {
+	bool legendary = GetRandomValue(0, 10) == 5;
+
+	CPowerup* powerup = new CPowerup(State::Powerups.size(), legendary ? POWERUP_AUTO_FIRE : POWERUP_SPEED_BOOST, { (float)GetRandomValue(0, GetScreenWidth()), GetScreenHeight() - 100.f });
+	
+	if (legendary)
+		powerup->Col = { 255, 255, 0, 255 };
+	
+	State::Powerups.push_back(powerup);
 }
 
 int main() {
@@ -58,6 +70,15 @@ int main() {
 			projectile->ProcessCollision();
 		}
 
+		for (CPowerup* powerup : State::Powerups) {
+			powerup->Draw();
+
+			if (State::GameOver)
+				continue;
+
+			powerup->ProcessCollision();
+		}
+
 		if (!State::GameOver) {
 #ifdef _DEBUG
 			DrawText(("Enemy Count: " + std::to_string(State::Enemies.size())).c_str(), 10, 32, 22.f, { 255, 255, 255, 255 });
@@ -80,6 +101,7 @@ int main() {
 			SpawnPlayer();
 			State::Enemies.clear();
 			State::Projectiles.clear();
+			State::Powerups.clear();
 			State::GameOver = false;
 			enemySpawnTimer = 0.f;
 		}
@@ -91,6 +113,7 @@ int main() {
 
 		if (enemySpawnTimer >= enemySpawnInterval) {
 			SpawnEnemy();
+			SpawnPowerup();
 			enemySpawnTimer -= enemySpawnInterval;
 		}
 	}
