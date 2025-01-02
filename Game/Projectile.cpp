@@ -7,6 +7,9 @@ using namespace Spacerush::Game;
 
 void CProjectile::ProcessMovement() {
 	Move(Direction);
+
+	if (Position.y < Size || Position.y > GetScreenHeight() - Size)
+		Destroy();
 }
 
 void CProjectile::ProcessCollision() {
@@ -23,19 +26,26 @@ void CProjectile::ProcessCollision() {
 
 			if (CollidesWith(enemy)) {
 				State::Enemies.erase(State::Enemies.begin() + i);
-				State::Projectiles.erase(State::Projectiles.begin() + ID);
-
-				for (CProjectile* projectile : State::Projectiles) {
-					if (projectile->ID <= ID)
-						continue;
-
-					projectile->ID--;
-				}
+				Destroy();
 
 				State::Player->Score++;
 			}
 		}
 
 		break;
+	}
+}
+
+void CProjectile::Destroy() {
+	if (Destroyed)
+		return;
+
+	State::Projectiles.erase(State::Projectiles.begin() + ID);
+
+	for (CProjectile* projectile : State::Projectiles) {
+		if (projectile->ID <= ID)
+			continue;
+
+		projectile->ID--;
 	}
 }
