@@ -22,9 +22,15 @@ void CPlayer::ProcessInput() {
 	if (IsKeyDown(KEY_D))
 		Move(MOVE_DIR_RIGHT);
 
-	if (IsKeyPressed(KEY_SPACE))
+	bool keyState = AutomaticFire ? IsKeyDown(KEY_SPACE) : IsKeyPressed(KEY_SPACE);
+
+	if (keyState && TimeSinceLastShot >= FiringCooldown) {
+		TimeSinceLastShot = 0.f;
 		Shoot(MOVE_DIR_TOP, PROJECTILE_TARGET_ENEMIES);
+	}
 
 	Position.x = Clamp(Position.x, Size, GetScreenWidth() - Size);
 	Position.y = GetScreenHeight() - 100.f;
+
+	TimeSinceLastShot += GetFrameTime();
 }
