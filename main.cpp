@@ -60,8 +60,8 @@ int main() {
 
 		if (!State::GameOver) {
 #ifdef _DEBUG
-			DrawText(("Enemy Count: " + std::to_string(State::Projectiles.size())).c_str(), 10, 32, 22.f, { 255, 255, 255, 255 });
-			DrawText(("Projectile Count: " + std::to_string(State::Enemies.size())).c_str(), 10, 54, 22.f, { 255, 255, 255, 255 });
+			DrawText(("Enemy Count: " + std::to_string(State::Enemies.size())).c_str(), 10, 32, 22.f, { 255, 255, 255, 255 });
+			DrawText(("Projectile Count: " + std::to_string(State::Projectiles.size())).c_str(), 10, 54, 22.f, { 255, 255, 255, 255 });
 			DrawText(("FPS: " + std::to_string(GetFPS())).c_str(), 10, 76, 22.f, { 255, 255, 255, 255 });
 #endif
 
