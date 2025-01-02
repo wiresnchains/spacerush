@@ -7,7 +7,7 @@ using namespace Spacerush::Core;
 namespace Spacerush::Game {
 	class CPlayer : public CSpaceship {
 	public:
-		CPlayer(Vector2 position) : CSpaceship(position, 12.f, {0, 255, 0, 255}, 100.f, MOVE_DIR_TOP, TARGET_TYPE_ENEMIES) {}
+		CPlayer(Vector2 position) : CSpaceship(position, 12.f, {0, 255, 0, 255}, 100.f), Score(0) {}
 
 		int Score;
 

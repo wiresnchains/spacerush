@@ -1,19 +1,16 @@
 #include "Spaceship.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Projectile.h"
 #include "../State.h"
 
 using namespace Spacerush::Game;
 
-void CBullet::ProcessMovement() {
-	Move(Direction);
+void CSpaceship::Shoot(MoveDirection direction, ProjectileTargetType targetType) {
+	State::Projectiles.push_back(new CProjectile(Position, direction, targetType));
 }
 
-void CSpaceship::Shoot() {
-	Bullets.push_back(new CBullet(Position, BulletDirection));
-}
-
-void CSpaceship::ProcessBullets() {
+/*void CSpaceship::ProcessBullets() {
 	for (int i = 0; i < Bullets.size(); i++) {
 		CBullet* bullet = Bullets[i];
 
@@ -21,13 +18,13 @@ void CSpaceship::ProcessBullets() {
 		bullet->ProcessMovement();
 
 		switch (TargetEntites) {
-		case TARGET_TYPE_PLAYER:
+		case PROJECTILE_TARGET_PLAYER:
 			if (bullet->CollidesWith(State::Player)) {
 				State::GameOver = true;
 			}
 
 			break;
-		case TARGET_TYPE_ENEMIES:
+		case PROJECTILE_TARGET_ENEMIES:
 			for (int j = 0; j < State::Enemies.size(); j++) {
 				CEnemy* enemy = State::Enemies[j];
 
@@ -45,4 +42,4 @@ void CSpaceship::ProcessBullets() {
 			break;
 		}
 	}
-}
+}*/

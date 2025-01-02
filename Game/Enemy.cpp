@@ -8,6 +8,6 @@ void CEnemy::ProcessMovement() {
 
 	if (Frames >= 60) {
 		Frames = 0;
-		Shoot();
+		Shoot(MOVE_DIR_BOTTOM, PROJECTILE_TARGET_PLAYER);
 	}
 }

@@ -1,6 +1,5 @@
 #include "Player.h"
 #include <cassert>
-#include <string>
 
 using namespace Spacerush::Game;
 
@@ -24,7 +23,7 @@ void CPlayer::ProcessInput() {
 		Move(MOVE_DIR_RIGHT);
 
 	if (IsKeyPressed(KEY_SPACE))
-		Shoot();
+		Shoot(MOVE_DIR_TOP, PROJECTILE_TARGET_ENEMIES);
 
 	Position.x = Clamp(Position.x, Size, GetScreenWidth() - Size);
 	Position.y = GetScreenHeight() - 100.f;

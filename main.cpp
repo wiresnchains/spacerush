@@ -1,9 +1,7 @@
-#include <raylib.h>
-#include <string>
-
 #include "Game/Player.h"
 #include "Game/Enemy.h"
 #include "State.h"
+#include <string>
 
 using namespace Spacerush;
 
@@ -47,13 +45,20 @@ int main() {
 				continue;
 
 			enemy->ProcessMovement();
-			enemy->ProcessBullets();
+		}
+
+		for (CProjectile* projectile : State::Projectiles) {
+			projectile->Draw();
+
+			if (State::GameOver)
+				continue;
+
+			projectile->ProcessMovement();
 		}
 
 		if (!State::GameOver) {
 			DrawText(("Score: " + std::to_string(State::Player->Score)).c_str(), 10, 10, 32.f, { 255, 255, 255, 255 });
 			State::Player->ProcessInput();
-			State::Player->ProcessBullets();
 		}
 		else {
 			DrawText("Game over", 100, 100, 32.f, { 255, 255, 255, 255 });
