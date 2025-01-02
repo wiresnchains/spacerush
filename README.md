@@ -11,3 +11,4 @@ You need to install [raylib](https://github.com/raysan5/raylib) using [vcpkg](ht
 - Timer?
 - Visuals
 - Sound effects
+- Move to CMake build system to support linux builds
