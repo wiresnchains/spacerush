@@ -20,7 +20,7 @@ void SpawnPlayer() {
 }
 
 void SpawnEnemy() {
-	State::Enemies.push_back(new CEnemy(State::Player->Position.x));
+	State::Enemies.push_back(new CEnemy(State::Player->Position.x, 0.8f));
 }
 
 int main() {
