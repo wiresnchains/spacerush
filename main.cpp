@@ -27,9 +27,9 @@ int main() {
 	const float enemySpawnInterval = 1.8f;
 	float enemySpawnTimer = enemySpawnInterval;
 
+	SetConfigFlags(FLAG_VSYNC_HINT);
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(800, 600, WINDOW_TITLE);
-	SetTargetFPS(120);
 
 	SpawnPlayer();
 
