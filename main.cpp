@@ -24,11 +24,11 @@ void SpawnEnemy() {
 }
 
 int main() {
-	int frames = 108;
+	const float enemySpawnInterval = 1.8f;
+	float enemySpawnTimer = enemySpawnInterval;
 
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(800, 600, WINDOW_TITLE);
-	SetTargetFPS(60);
 
 	SpawnPlayer();
 
@@ -74,17 +74,17 @@ int main() {
 			State::Enemies.clear();
 			State::Projectiles.clear();
 			State::GameOver = false;
-			frames = 108;
+			enemySpawnTimer = 0.f;
 		}
 
 		if (State::GameOver)
 			continue;
 
-		frames++;
+		enemySpawnTimer += GetFrameTime();
 
-		if (frames >= 108) {
+		if (enemySpawnTimer >= enemySpawnInterval) {
 			SpawnEnemy();
-			frames = 0;
+			enemySpawnTimer -= enemySpawnInterval;
 		}
 	}
 
